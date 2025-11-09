@@ -124,7 +124,7 @@ export default function Spotlight() {
       title: "Sustainability Impact",
       subtitle: "Green Future",
       description: "Discover innovative solutions for climate change and sustainable business practices.",
-      image: "/sustainability-environment.jpg",
+      image: "/green-sustainability-renewable-energy.jpg",
       date: "May 10-12, 2025",
       time: "3 Days",
       location: "Seattle",
@@ -161,7 +161,7 @@ export default function Spotlight() {
       subtitle: "Reimagining Workspaces",
       description: "Discover new paradigms in remote work, collaboration tools, and workplace culture evolution.",
       image: "/enterprise-business-digital.jpg",
-      date: "August 12-13, 2025",
+      date: "August 13, 2025",
       time: "2 Days",
       location: "Chicago",
       attendees: "3,000+",
@@ -222,15 +222,15 @@ export default function Spotlight() {
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <div className="transform transition-all duration-500 group-hover:translate-y-0 translate-y-4">
-                    <h3 className="text-3xl font-black text-white mb-2">
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <div className="transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
+                    <h3 className="text-2xl font-black text-white mb-2 leading-tight">
                       {event.title}
                     </h3>
-                    <p className="text-white/80 text-lg font-semibold mb-4">
+                    <p className="text-white/90 text-base font-semibold mb-3">
                       {event.subtitle}
                     </p>
-                    <p className="text-white/90 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-150">
+                    <p className="text-white/80 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                       {event.description}
                     </p>
                   </div>
@@ -238,9 +238,9 @@ export default function Spotlight() {
               </div>
               
               {/* Details Section */}
-              <div className="p-8 bg-gradient-to-br from-card via-card to-card/80">
+              <div className="p-6 bg-card">
                 {/* Event Meta Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-3 mb-6">
                   <div className="flex items-center gap-3 text-sm">
                     <div className="p-2 bg-primary/10 rounded-lg">
                       <Calendar size={16} className="text-primary" />
@@ -281,11 +281,11 @@ export default function Spotlight() {
 
                 {/* CTA Buttons */}
                 <div className="flex gap-3">
-                  <button className="flex-1 group/btn flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  <button className="flex-1 group/btn flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-lg hover:bg-primary/90 transition-all duration-300">
                     <span>Register Now</span>
                     <ExternalLink size={16} className="group-hover/btn:rotate-45 transition-transform duration-300" />
                   </button>
-                  <button className="px-4 py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                  <button className="px-3 py-2.5 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                     <ArrowRight size={16} />
                   </button>
                 </div>

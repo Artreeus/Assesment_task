@@ -25,29 +25,30 @@ export default function Home() {
         {/* Hero Section Group */}
         <Hero />
         <StatsBanner />
-        
+
         {/* Content Discovery Section Group */}
         <div className="bg-gradient-to-b from-background via-muted/20 to-background">
           <FeaturedShowcase />
-          <InsightsGrid />
+
         </div>
-        
+        <InsightsGrid />
+
         {/* Success Stories Section Group */}
         <div className="bg-gradient-to-b from-background to-muted/30">
           <CaseStudies />
         </div>
-        
+
         {/* Events & Updates Section Group */}
         <div className="bg-gradient-to-b from-muted/30 via-background to-background">
           <Spotlight />
-          <NewsSection />
         </div>
-        
+        <NewsSection />
+
         {/* Engagement Section Group */}
         <div className="bg-gradient-to-b from-background to-primary/5">
           <Initiatives />
-          <Newsletter />
         </div>
+        <Newsletter />
       </main>
       <Footer />
     </>
