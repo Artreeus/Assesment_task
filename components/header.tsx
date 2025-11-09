@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Moon, Sun } from "lucide-react"
+import { Menu, X, Moon, Sun, ChevronDown } from "lucide-react"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,13 +11,19 @@ export default function Header() {
   useEffect(() => {
     // Throttle scroll events for better performance
     let lastRun = 0
-    const throttleDelay = 100 // milliseconds
+    const throttleDelay = 50 // milliseconds - reduced for smoother detection
     
     const handleScroll = () => {
       const now = Date.now()
       if (now - lastRun >= throttleDelay) {
         lastRun = now
-        setIsScrolled(window.scrollY > 50)
+        const scrollY = window.scrollY
+        // Add hysteresis to prevent flickering
+        if (scrollY > 80 && !isScrolled) {
+          setIsScrolled(true)
+        } else if (scrollY < 60 && isScrolled) {
+          setIsScrolled(false)
+        }
       }
     }
     
@@ -28,12 +34,12 @@ export default function Header() {
     setIsDark(document.documentElement.classList.contains("dark"))
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isScrolled])
 
   const navItems = [
     { label: "Featured", href: "#featured" },
     { label: "Insights", href: "#insights" },
-    { label: "Cases", href: "#case-studies" },
+    { label: "Case Studies", href: "#case-studies" },
     { label: "Events", href: "#spotlight" },
     { label: "News", href: "#news" },
   ]
@@ -62,96 +68,133 @@ export default function Header() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:font-bold"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:font-semibold"
       >
         Skip to main content
       </a>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-2xl border-b border-primary/20 shadow-2xl"
-            : "bg-gradient-to-b from-background/70 to-background/20 backdrop-blur-lg"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out"
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Main navigation">
-        <div className="flex items-center justify-between">
-          <div
-            className="text-2xl font-black bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity duration-700 flex items-center gap-2"
-            onClick={() => handleNavClick("#hero")}
+        <div className={`transition-all duration-500 ease-in-out ${
+          isScrolled ? "pt-4 px-4" : "pt-0 px-0"
+        }`}>
+          <nav 
+            className={`transition-all duration-500 ease-in-out mx-auto ${
+              isScrolled 
+                ? "bg-background/95 backdrop-blur-xl border border-border shadow-lg rounded-full px-8 py-3 max-w-fit"
+                : "bg-background/60 backdrop-blur-md max-w-7xl px-4 sm:px-6 lg:px-8"
+            }`}
+            aria-label="Main navigation"
           >
-            <div className="w-3 h-3 bg-gradient-to-br from-primary to-accent rounded-full"></div>
-            <span>PROTOTYPE</span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.href)}
-                className="relative px-5 py-2.5 text-foreground/70 hover:text-primary font-semibold text-sm uppercase tracking-wider transition-colors duration-700 group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-700"></span>
-              </button>
-            ))}
-          </div>
-
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={handleThemeToggle}
-              className="p-2.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            <div className={`flex items-center transition-all duration-500 ease-in-out ${
+              isScrolled 
+                ? "gap-6 justify-center h-12" 
+                : "gap-8 justify-between h-16"
+            }`}>
+            {/* Logo */}
+            <div
+              className={`flex items-center gap-2.5 cursor-pointer group transition-all duration-500 ${
+                isScrolled ? "shrink-0" : "flex-none"
+              }`}
+              onClick={() => handleNavClick("#hero")}
             >
-              {isDark ? <Sun size={20} className="text-primary" /> : <Moon size={20} className="text-primary" />}
-            </button>
-            <button className="px-6 py-2.5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-bold text-sm uppercase tracking-wider hover:shadow-lg hover:shadow-primary/40 transition-all duration-700">
-              Get Access
-            </button>
+              <div className={`transition-all duration-500 ${
+                isScrolled ? "w-7 h-7" : "w-8 h-8"
+              } bg-gradient-to-br from-primary to-accent rounded-md flex items-center justify-center shadow-sm group-hover:shadow-md`}>
+                <span className={`text-white font-bold transition-all duration-500 ${
+                  isScrolled ? "text-xs" : "text-sm"
+                }`}>P</span>
+              </div>
+              <span className={`font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent transition-all duration-500 ${
+                isScrolled ? "text-base" : "text-xl"
+              }`}>
+                PROTOTYPE
+              </span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className={`hidden lg:flex items-center transition-all duration-500 ${
+              isScrolled ? "gap-2" : "gap-1"
+            }`}>
+              {navItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`text-sm font-medium text-foreground/70 hover:text-foreground transition-all duration-500 rounded-full hover:bg-muted/50 ${
+                    isScrolled ? "px-4 py-2" : "px-4 py-2"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Desktop Actions */}
+            <div className={`hidden lg:flex items-center transition-all duration-500 ${
+              isScrolled ? "gap-2 shrink-0" : "gap-3 flex-none"
+            }`}>
+              <button
+                onClick={handleThemeToggle}
+                className={`text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-full transition-all duration-500 ${
+                  isScrolled ? "p-2" : "p-2"
+                }`}
+                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              <div className={`transition-all duration-500 overflow-hidden ${
+                isScrolled ? "w-0" : "w-px h-6 bg-border"
+              }`}></div>
+              <button className={`font-semibold text-primary-foreground bg-primary hover:bg-primary/90 transition-all duration-500 whitespace-nowrap ${
+                isScrolled ? "px-4 py-2 text-sm rounded-full" : "px-4 py-2 text-sm rounded-md"
+              }`}>
+                Contact
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            {!isScrolled && (
+              <button
+                className="lg:hidden p-2 text-foreground hover:bg-muted/50 rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle mobile menu"
+                aria-expanded={isMenuOpen}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            )}
           </div>
 
-          <button
-            className="md:hidden text-primary text-2xl transition hover:bg-primary/10 p-2 rounded-lg duration-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle mobile menu"
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* Mobile Menu */}
+          {isMenuOpen && !isScrolled && (
+            <div className="lg:hidden border-t border-border animate-fade-in-down">
+              <div className="py-4 space-y-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNavClick(item.href)}
+                    className="block w-full text-left px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-md transition-colors duration-200"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <div className="pt-4 border-t border-border mt-4">
+                  <button
+                    onClick={handleThemeToggle}
+                    className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-md transition-colors duration-200"
+                  >
+                    <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
+                    {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                  </button>
+                  <button className="w-full mt-2 px-4 py-3 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-md transition-colors duration-200">
+                    Contact
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          </nav>
         </div>
-
-        {isMenuOpen && (
-          <div className="md:hidden mt-6 space-y-2 animate-fade-in-down pb-6 border-t border-primary/10 pt-6">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.href)}
-                className="block w-full text-left px-5 py-3 text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors duration-700 font-semibold uppercase text-sm rounded-lg"
-              >
-                {item.label}
-              </button>
-            ))}
-            <button
-              onClick={handleThemeToggle}
-              className="w-full flex items-center gap-3 px-5 py-3 text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors duration-700 font-semibold uppercase text-sm rounded-lg mt-4"
-            >
-              {isDark ? (
-                <>
-                  <Sun size={18} />
-                  Light Mode
-                </>
-              ) : (
-                <>
-                  <Moon size={18} />
-                  Dark Mode
-                </>
-              )}
-            </button>
-            <button className="w-full px-5 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold uppercase text-sm mt-4 hover:shadow-lg hover:shadow-primary/50 transition-all duration-700">
-              Get Access
-            </button>
-          </div>
-        )}
-        </nav>
       </header>
     </>
   )
