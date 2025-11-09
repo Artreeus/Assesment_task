@@ -1,20 +1,26 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 
-export default function StatsBanner() {
+const StatsBanner = memo(function StatsBanner() {
   const [isVisible, setIsVisible] = useState(false)
   const [shouldCount, setShouldCount] = useState(false)
   const [counts, setCounts] = useState([0, 0, 0, 0])
 
   useEffect(() => {
+    const element = document.querySelector("#stats")
+    if (!element) return
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true)
         setShouldCount(true)
       }
     })
-    observer.observe(document.querySelector("#stats") as Element)
+    
+    observer.observe(element)
+    
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -72,4 +78,6 @@ export default function StatsBanner() {
       </div>
     </section>
   )
-}
+})
+
+export default StatsBanner

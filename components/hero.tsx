@@ -53,12 +53,18 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="group px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-bold uppercase tracking-wider hover:shadow-2xl hover:shadow-primary/40 transition-all duration-700 flex items-center gap-2">
+              <button
+                aria-label="Explore our latest insights and research"
+                className="group px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-bold uppercase tracking-wider hover:shadow-2xl hover:shadow-primary/40 transition-all duration-700 flex items-center gap-2"
+              >
                 Explore Insights
-                <ArrowRight className="group-hover:translate-x-1 transition-transform duration-700" size={20} />
+                <ArrowRight className="group-hover:translate-x-1 transition-transform duration-700" size={20} aria-hidden="true" />
               </button>
-              <button className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors duration-700 flex items-center gap-2">
-                <Sparkles size={20} />
+              <button
+                aria-label="Learn more about our platform"
+                className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors duration-700 flex items-center gap-2"
+              >
+                <Sparkles size={20} aria-hidden="true" />
                 Learn More
               </button>
             </div>
@@ -69,7 +75,8 @@ export default function Hero() {
             <div className="relative h-full rounded-3xl overflow-hidden border border-primary/30 backdrop-blur-sm group-hover:shadow-2xl group-hover:shadow-primary/20 transition-all duration-700">
               <img
                 src="/futuristic-technology-innovation-digital.jpg"
-                alt="Next-gen technology innovation"
+                alt="Abstract visualization of next-generation digital technology and innovation"
+                loading="eager"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>

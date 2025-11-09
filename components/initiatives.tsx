@@ -1,16 +1,22 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { Zap, Leaf, Globe, Cpu } from "lucide-react"
 
-export default function Initiatives() {
+const Initiatives = memo(function Initiatives() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    const element = document.querySelector("#initiatives")
+    if (!element) return
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setIsVisible(true)
     })
-    observer.observe(document.querySelector("#initiatives") as Element)
+    
+    observer.observe(element)
+    
+    return () => observer.disconnect()
   }, [])
 
   const initiatives = [
@@ -19,36 +25,36 @@ export default function Initiatives() {
       description: "Accelerating digital transformation across industries with cutting-edge solutions.",
       icon: Zap,
       stats: "500+ Companies Transformed",
-      color: "bg-blue-50 dark:bg-slate-800 border-blue-200 dark:border-blue-800",
-      textColor: "text-blue-600 dark:text-blue-400",
-      accentColor: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200",
+      color: "bg-primary/5 dark:bg-slate-800 border-primary/20 dark:border-primary/40",
+      textColor: "text-primary dark:text-primary",
+      accentColor: "bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary",
     },
     {
       title: "Sustainability Leaders",
       description: "Driving climate action through innovative green technology initiatives.",
       icon: Leaf,
       stats: "1M+ Tons CO2 Reduced",
-      color: "bg-green-50 dark:bg-slate-800 border-green-200 dark:border-green-800",
-      textColor: "text-green-600 dark:text-green-400",
-      accentColor: "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200",
+      color: "bg-accent/5 dark:bg-slate-800 border-accent/20 dark:border-accent/40",
+      textColor: "text-accent dark:text-accent",
+      accentColor: "bg-accent/10 dark:bg-accent/20 text-accent dark:text-accent",
     },
     {
       title: "Global Connectivity",
       description: "Connecting communities and organizations worldwide for greater impact.",
       icon: Globe,
       stats: "150+ Countries Reached",
-      color: "bg-cyan-50 dark:bg-slate-800 border-cyan-200 dark:border-cyan-800",
-      textColor: "text-cyan-600 dark:text-cyan-400",
-      accentColor: "bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-200",
+      color: "bg-secondary/5 dark:bg-slate-800 border-secondary/20 dark:border-secondary/40",
+      textColor: "text-secondary dark:text-secondary",
+      accentColor: "bg-secondary/10 dark:bg-secondary/20 text-secondary dark:text-secondary",
     },
     {
       title: "Innovation Hub",
       description: "Fostering breakthrough technologies and groundbreaking research.",
       icon: Cpu,
       stats: "1000+ Projects Funded",
-      color: "bg-purple-50 dark:bg-slate-800 border-purple-200 dark:border-purple-800",
-      textColor: "text-purple-600 dark:text-purple-400",
-      accentColor: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200",
+      color: "bg-primary/5 dark:bg-slate-800 border-primary/20 dark:border-primary/40",
+      textColor: "text-primary dark:text-primary",
+      accentColor: "bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary",
     },
   ]
 
@@ -107,4 +113,6 @@ export default function Initiatives() {
       </div>
     </section>
   )
-}
+})
+
+export default Initiatives

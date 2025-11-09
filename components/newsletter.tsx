@@ -1,10 +1,10 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import { Mail, Check } from "lucide-react"
 
-export default function Newsletter() {
+const Newsletter = memo(function Newsletter() {
   const [isVisible, setIsVisible] = useState(false)
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
@@ -55,17 +55,24 @@ export default function Newsletter() {
             style={{ animationDelay: "0.2s" }}
           >
             <div className="flex-1 relative">
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address for newsletter subscription
+              </label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                aria-required="true"
+                aria-label="Email address"
                 className="w-full px-6 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-white/60 focus:bg-white/25 transition backdrop-blur"
               />
             </div>
             <button
               type="submit"
+              aria-label="Subscribe to newsletter"
               className="px-8 py-4 bg-white text-primary rounded-xl font-bold hover:shadow-lg hover:shadow-white/20 transition transform hover:scale-105 uppercase tracking-wider text-sm flex items-center justify-center gap-2 whitespace-nowrap"
             >
               {subscribed ? (
@@ -83,4 +90,6 @@ export default function Newsletter() {
       </div>
     </section>
   )
-}
+})
+
+export default Newsletter

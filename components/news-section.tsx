@@ -17,7 +17,7 @@ export default function NewsSection() {
     title: "Revolutionary AI Framework Changes Everything",
     excerpt: "New breakthrough in artificial intelligence reshapes industry standards...",
     image: "/ai-breakthrough-innovation.jpg",
-    author: "Sarah Chen",
+    author: "Content Author",
     date: "2 hours ago",
   }
 
@@ -54,7 +54,8 @@ export default function NewsSection() {
             <div className="relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-primary/30 dark:border-primary/50 hover:border-primary/80 transition-colors duration-700">
               <img
                 src={featuredNews.image || "/placeholder.svg"}
-                alt={featuredNews.title}
+                alt={`Featured news article: ${featuredNews.title}`}
+                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 dark:from-background/95 dark:via-background/50 to-transparent"></div>

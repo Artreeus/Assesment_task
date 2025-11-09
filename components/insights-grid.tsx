@@ -20,58 +20,59 @@ export default function InsightsGrid() {
       title: "Future of AI in Business",
       category: "Technology",
       icon: Zap,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-primary via-primary/90 to-secondary",
       description: "Exploring emerging AI applications",
     },
     {
       title: "Sustainable Digital Economy",
       category: "Sustainability",
       icon: Leaf,
-      color: "from-green-500 to-emerald-500",
+      color: "from-accent via-accent/90 to-accent/80",
       description: "Building eco-friendly digital solutions",
     },
     {
       title: "Global Supply Chain",
       category: "Economics",
       icon: Globe,
-      color: "from-purple-500 to-pink-500",
+      color: "from-secondary via-secondary/90 to-accent",
       description: "Optimizing international trade networks",
     },
     {
       title: "Remote Work Trends",
       category: "Workforce",
       icon: Users,
-      color: "from-orange-500 to-red-500",
+      color: "from-accent via-accent/90 to-primary",
       description: "The future of distributed work",
     },
     {
       title: "Market Insights 2025",
       category: "Analysis",
       icon: TrendingUp,
-      color: "from-indigo-500 to-blue-500",
+      color: "from-primary via-accent/80 to-accent",
       description: "Key economic forecasts",
     },
     {
       title: "Cybersecurity Evolution",
       category: "Security",
       icon: Shield,
-      color: "from-red-500 to-orange-500",
+      color: "from-secondary via-primary/90 to-primary",
       description: "Next-gen threat prevention",
     },
     {
       title: "Innovation Strategies",
       category: "Strategy",
       icon: Lightbulb,
-      color: "from-yellow-500 to-amber-500",
+      color: "from-accent via-secondary/90 to-secondary",
       description: "Driving organizational transformation",
     },
     {
       title: "Growth Acceleration",
       category: "Business",
       icon: Rocket,
-      color: "from-pink-500 to-rose-500",
+      color: "from-primary via-secondary to-accent",
       description: "Scaling for exponential growth",
-    },
+    }
+    
   ]
 
   return (

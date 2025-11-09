@@ -17,37 +17,46 @@ export default function CaseStudies() {
   }, [])
 
   useEffect(() => {
+    // Respect user's motion preferences
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % cases.length)
+      // Only auto-rotate if page is visible
+      if (document.visibilityState === "visible") {
+        setCurrentSlide((prev) => (prev + 1) % cases.length)
+      }
     }, 8000)
+    
     return () => clearInterval(interval)
   }, [])
 
   const cases = [
     {
       title: "Enterprise Digital Transformation",
-      client: "Fortune 500 Tech Company",
+      client: "Enterprise Client A",
       image: "/enterprise-digital-transformation-office.jpg",
       result: "+250% Growth",
       description: "Complete digital overhaul resulting in exponential business growth",
     },
     {
       title: "Sustainability Initiative Launch",
-      client: "Global Manufacturing Corp",
+      client: "Manufacturing Client B",
       image: "/green-sustainability-renewable-energy.jpg",
       result: "-45% Emissions",
       description: "Industry-leading environmental impact reduction program",
     },
     {
       title: "Cloud Migration Success",
-      client: "Regional Finance Institution",
+      client: "Financial Services Client C",
       image: "/cloud-computing-data-center-servers.jpg",
       result: "99.99% Uptime",
       description: "Seamless migration to cloud infrastructure",
     },
     {
       title: "AI Integration Project",
-      client: "Tech Startup Unicorn",
+      client: "Technology Client D",
       image: "/artificial-intelligence-machine-learning-technolog.jpg",
       result: "10x Efficiency",
       description: "Revolutionary AI implementation for workflow automation",
@@ -73,7 +82,7 @@ export default function CaseStudies() {
         </div>
 
         <div className="relative">
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl" role="region" aria-label="Case studies carousel" aria-live="polite">
             <div className="relative min-h-[400px] sm:min-h-[500px]">
               {cases.map((caseItem, idx) => (
                 <div
@@ -99,14 +108,18 @@ export default function CaseStudies() {
                       <p className="text-foreground/70 dark:text-foreground/60 mb-8 leading-relaxed text-sm sm:text-base">
                         {caseItem.description}
                       </p>
-                      <button className="w-fit px-6 py-3 bg-primary text-white rounded-lg font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-primary/30 transition-all duration-700 hover:scale-105">
+                      <button
+                        aria-label={`View full case study: ${caseItem.title}`}
+                        className="w-fit px-6 py-3 bg-primary text-white rounded-lg font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-primary/30 transition-all duration-700 hover:scale-105"
+                      >
                         View Full Case
                       </button>
                     </div>
                     <div className="relative h-80 hidden md:block rounded-xl overflow-hidden">
                       <img
                         src={caseItem.image || "/placeholder.svg"}
-                        alt={caseItem.title}
+                        alt={`Visual representation of ${caseItem.title} case study`}
+                        loading="lazy"
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>

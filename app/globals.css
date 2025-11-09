@@ -4,31 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* New professional color scheme - light backgrounds with vibrant blue accents inspired by reference sites */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(0.96 0.01 0);
-  --card-foreground: oklch(0.15 0 0);
+  /* Modern vibrant color scheme - clean light backgrounds with energetic blue-purple accents */
+  --background: oklch(0.99 0.005 250);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(0.985 0.008 250);
+  --card-foreground: oklch(0.18 0.02 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.35 0.25 250);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.5 0.15 240);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.88 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.55 0.25 260);
-  --accent-foreground: oklch(0.98 0 0);
+  --popover-foreground: oklch(0.18 0.02 260);
+  --primary: oklch(0.50 0.24 265);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.58 0.20 250);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.94 0.01 260);
+  --muted-foreground: oklch(0.48 0.02 260);
+  --accent: oklch(0.62 0.26 285);
+  --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.96 0 0);
-  --ring: oklch(0.55 0.25 260);
-  --chart-1: oklch(0.55 0.25 260);
-  --chart-2: oklch(0.65 0.2 200);
-  --chart-3: oklch(0.5 0.22 280);
-  --chart-4: oklch(0.7 0.2 40);
-  --chart-5: oklch(0.6 0.18 120);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.90 0.01 260);
+  --input: oklch(0.94 0.01 260);
+  --ring: oklch(0.50 0.24 265);
+  --chart-1: oklch(0.50 0.24 265);
+  --chart-2: oklch(0.62 0.26 285);
+  --chart-3: oklch(0.58 0.20 250);
+  --chart-4: oklch(0.65 0.22 220);
+  --chart-5: oklch(0.70 0.18 190);
   --radius: 0.5rem;
 }
 
@@ -112,6 +112,42 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Enhanced focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid oklch(0.50 0.24 265);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* Skip link styles */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* Ensure proper focus ring for dark mode */
+  .dark *:focus-visible {
+    outline-color: oklch(0.62 0.26 285);
   }
 }
 
@@ -197,4 +233,16 @@
 /* Removed fast hover scale, replaced with slower smooth transition */
 .hover-slow-scale {
   @apply hover:scale-105 transition-transform duration-700;
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

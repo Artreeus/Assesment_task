@@ -21,7 +21,7 @@ export default function Spotlight() {
       description: "Annual conference bringing together world leaders, innovators, and changemakers.",
       image: "/global-conference-summit.jpg",
       date: "SEPT 15-18",
-      location: "Dubai, UAE",
+      location: "Location A",
       attendees: "5,000+",
     },
     {
@@ -29,7 +29,7 @@ export default function Spotlight() {
       description: "Expert insights on leading in the digital age and beyond.",
       image: "/leadership-technology-future.jpg",
       date: "OCT 22-24",
-      location: "Singapore",
+      location: "Location B",
       attendees: "3,500+",
     },
     {
@@ -37,7 +37,7 @@ export default function Spotlight() {
       description: "Hands-on workshops and networking with industry pioneers.",
       image: "/innovation-workshop.jpg",
       date: "NOV 10-12",
-      location: "San Francisco",
+      location: "Location C",
       attendees: "2,000+",
     },
     {
@@ -45,7 +45,7 @@ export default function Spotlight() {
       description: "Leading the charge on climate action and green technology.",
       image: "/sustainability-environment.jpg",
       date: "DEC 5-7",
-      location: "Berlin",
+      location: "Location D",
       attendees: "4,000+",
     },
   ]
@@ -75,9 +75,10 @@ export default function Spotlight() {
               style={{ animationDelay: `${idx * 0.15}s` }}
             >
               <div className="relative h-48 sm:h-64 overflow-hidden bg-gradient-to-br from-primary/10 dark:from-primary/20 to-secondary/10 dark:to-secondary/20">
-                <img
+              <img
                   src={item.image || "/placeholder.svg"}
-                  alt={item.title}
+                  alt={`Event: ${item.title} - ${item.description}`}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>

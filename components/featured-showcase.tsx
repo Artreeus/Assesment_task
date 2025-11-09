@@ -64,7 +64,8 @@ export default function FeaturedShowcase() {
             <div className="relative h-full">
               <img
                 src={featured[0].image || "/placeholder.svg"}
-                alt={featured[0].title}
+                alt={`Featured content: ${featured[0].title} - ${featured[0].description}`}
+                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -89,7 +90,8 @@ export default function FeaturedShowcase() {
               <div className="relative h-full">
                 <img
                   src={item.image || "/placeholder.svg"}
-                  alt={item.title}
+                  alt={`${item.title} - ${item.description}`}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

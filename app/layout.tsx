@@ -9,9 +9,10 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Nexus App",
-  description: "Nexus App",
-  generator: "Nexus App",
+  title: "Prototype Platform - Professional Website Demo",
+  description: "A professional prototype website demonstrating modern design patterns, responsive layouts, and insights presentation.",
+  generator: "Next.js",
+  viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: [
       {
@@ -28,6 +29,10 @@ export const metadata: Metadata = {
       },
     ],
     apple: "/apple-icon.png",
+  },
+  robots: {
+    index: false,
+    follow: false,
   },
 }
 
