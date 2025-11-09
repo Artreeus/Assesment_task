@@ -162,6 +162,24 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(5deg);
+  }
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -221,6 +239,14 @@
 
 .animate-fade-in-down {
   animation: fadeInDown 0.5s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
 }
 
 /* Slowed down hover transitions from 300ms to 500ms */
