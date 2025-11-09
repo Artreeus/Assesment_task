@@ -67,10 +67,10 @@ const Initiatives = memo(function Initiatives() {
         <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <span className="text-primary font-bold uppercase tracking-widest text-sm">Strategic Initiatives</span>
-            <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance text-foreground dark:text-white">
-              Global <span className="text-primary">Programs</span>
+            <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
+              Global <span className="text-primary">Initiatives</span>
             </h2>
-            <p className="text-lg sm:text-xl text-foreground/60 dark:text-foreground/50 mt-6 max-w-2xl">
+            <p className="text-lg sm:text-xl text-foreground/60 mt-6 max-w-2xl">
               Transforming industries and creating lasting impact through strategic initiatives worldwide
             </p>
           </div>

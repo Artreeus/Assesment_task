@@ -36,7 +36,7 @@ export default function NewsSection() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            <span className="text-primary font-bold uppercase tracking-widest text-sm">Latest News</span>
+            <span className="text-primary font-bold uppercase tracking-widest text-sm">Latest Updates</span>
             <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
               Stay <span className="text-primary">Informed</span> & Updated
             </h2>

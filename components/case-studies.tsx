@@ -72,7 +72,7 @@ export default function CaseStudies() {
         <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <span className="text-primary font-bold uppercase tracking-widest text-sm">Case Studies</span>
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black mt-4 text-balance">
+            <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
               Real-World <span className="text-primary">Impact</span> & Results
             </h2>
             <p className="text-lg sm:text-xl text-foreground/60 mt-6 max-w-2xl">

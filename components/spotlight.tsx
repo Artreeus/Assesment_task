@@ -73,7 +73,7 @@ export default function Spotlight() {
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <span className="text-primary font-bold uppercase tracking-widest text-sm">Featured Events</span>
             <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
-              Spotlight <span className="text-primary">Events</span>
+              Global <span className="text-primary">Spotlight</span>
             </h2>
             <p className="text-lg sm:text-xl text-foreground/60 mt-6 max-w-2xl">
               Join our most significant global gatherings and network with industry leaders worldwide
