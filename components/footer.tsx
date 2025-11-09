@@ -1,57 +1,108 @@
 "use client"
 
-import { memo } from "react"
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { Mail, Phone, MapPin, ArrowUpRight, Sparkles, Globe } from "lucide-react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-const Footer = memo(function Footer() {
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
+export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null)
+  const columnsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const ctx = gsap.context(() => {
+      // Footer columns stagger animation
+      const columns = columnsRef.current?.children
+      if (columns) {
+        gsap.fromTo(
+          columns,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: "top 85%",
+            },
+          }
+        )
+      }
+    }, footerRef)
+
+    return () => ctx.revert()
+  }, [])
   return (
-    <footer className="bg-gradient-to-b from-background to-card/30 border-t border-accent/10 text-foreground py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-10 sm:mb-12">
+    <footer ref={footerRef} className="relative bg-gradient-to-b from-background via-muted/30 to-card border-t border-border text-foreground py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div ref={columnsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           {/* Company Info Section */}
-          <div>
-            <div className="text-2xl font-black bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent mb-4">
-              PROTOTYPE
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="p-2 bg-gradient-to-br from-primary to-accent rounded-lg">
+                <Globe size={20} className="text-white" />
+              </div>
+              <div className="text-2xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                PROTOTYPE
+              </div>
             </div>
             <p className="text-foreground/70 text-sm leading-relaxed mb-6">
-              A professional prototype demonstrating modern design and strategic insights presentation.
+              Transforming industries through innovation, strategic insights, and cutting-edge solutions.
             </p>
             <div className="space-y-3">
               <a
                 href="mailto:contact@example.com"
-                className="flex items-center gap-3 text-foreground/60 hover:text-accent transition-colors duration-500 group"
+                className="flex items-center gap-3 text-foreground/60 hover:text-primary transition-colors duration-300 group"
               >
-                <Mail size={18} className="group-hover:scale-110 transition-transform duration-500" />
-                <span className="text-sm">contact@example.com</span>
+                <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-300">
+                  <Mail size={16} className="text-primary" />
+                </div>
+                <span className="text-sm font-medium">contact@example.com</span>
               </a>
               <a
                 href="tel:+15550000000"
-                className="flex items-center gap-3 text-foreground/60 hover:text-accent transition-colors duration-500 group"
+                className="flex items-center gap-3 text-foreground/60 hover:text-primary transition-colors duration-300 group"
               >
-                <Phone size={18} className="group-hover:scale-110 transition-transform duration-500" />
-                <span className="text-sm">+1 (555) 000-0000</span>
+                <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-300">
+                  <Phone size={16} className="text-primary" />
+                </div>
+                <span className="text-sm font-medium">+1 (555) 000-0000</span>
               </a>
               <div className="flex items-center gap-3 text-foreground/60">
-                <MapPin size={18} />
-                <span className="text-sm">Global Headquarters</span>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <MapPin size={16} className="text-primary" />
+                </div>
+                <span className="text-sm font-medium">Global Headquarters</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-base mb-6 text-foreground">Company</h4>
+            <h4 className="font-black text-base mb-6 text-foreground uppercase tracking-wide">Company</h4>
             <ul className="space-y-3">
               {["About Us", "Careers", "News", "Blog"].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-foreground/60 text-sm hover:text-accent hover:translate-x-1 transition-all duration-500 flex items-center gap-1 group"
+                    className="text-foreground/70 text-sm hover:text-primary transition-all duration-300 flex items-center gap-2 group font-medium"
                   >
-                    {item}
-                    <ExternalLink
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">{item}</span>
+                    <ArrowUpRight
                       size={14}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-primary"
                     />
                   </a>
                 </li>
@@ -61,18 +112,18 @@ const Footer = memo(function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-bold text-base mb-6 text-foreground">Resources</h4>
+            <h4 className="font-black text-base mb-6 text-foreground uppercase tracking-wide">Resources</h4>
             <ul className="space-y-3">
               {["Documentation", "Case Studies", "Insights", "Support"].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-foreground/60 text-sm hover:text-accent hover:translate-x-1 transition-all duration-500 flex items-center gap-1 group"
+                    className="text-foreground/70 text-sm hover:text-primary transition-all duration-300 flex items-center gap-2 group font-medium"
                   >
-                    {item}
-                    <ExternalLink
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">{item}</span>
+                    <ArrowUpRight
                       size={14}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-primary"
                     />
                   </a>
                 </li>
@@ -82,7 +133,7 @@ const Footer = memo(function Footer() {
 
           {/* Social & Newsletter */}
           <div>
-            <h4 className="font-bold text-base mb-6 text-foreground">Connect</h4>
+            <h4 className="font-black text-base mb-6 text-foreground uppercase tracking-wide">Connect</h4>
             <div className="flex gap-3 mb-6">
               {[
                 { name: "Twitter", icon: "𝕏" },
@@ -92,48 +143,52 @@ const Footer = memo(function Footer() {
                 <a
                   key={social.name}
                   href="#"
-                  className="w-9 h-9 bg-accent/5 hover:bg-accent/15 border border-accent/20 rounded-lg flex items-center justify-center text-accent font-bold transition-all duration-500 hover:scale-110 hover:-translate-y-1"
+                  className="w-10 h-10 bg-primary/10 hover:bg-gradient-to-br hover:from-primary hover:to-accent border border-primary/20 hover:border-transparent rounded-xl flex items-center justify-center text-primary hover:text-white font-bold transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
                   title={social.name}
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
-            <p className="text-foreground/60 text-xs mb-3">Stay updated with latest insights</p>
-            <form className="flex gap-2">
+            <p className="text-foreground/70 text-sm mb-4 font-medium flex items-center gap-2">
+              <Sparkles size={16} className="text-primary" />
+              Stay updated with insights
+            </p>
+            <form className="flex flex-col gap-3">
               <label htmlFor="footer-email" className="sr-only">
                 Email address for updates
               </label>
               <input
                 id="footer-email"
                 type="email"
-                placeholder="Your email"
+                placeholder="Enter your email"
                 required
                 aria-required="true"
                 aria-label="Email address for updates"
-                className="flex-1 px-3 py-2 bg-card border border-accent/20 rounded-lg text-sm focus:outline-none focus:border-accent/50 transition-colors duration-500"
+                className="w-full px-4 py-2.5 bg-card border-2 border-border rounded-xl text-sm focus:outline-none focus:border-primary transition-all duration-300 font-medium"
               />
               <button
                 type="submit"
                 aria-label="Subscribe to updates"
-                className="px-4 py-2 bg-gradient-to-r from-accent to-primary text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-500 whitespace-nowrap"
+                className="w-full px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
               >
-                Subscribe
+                Subscribe Now
               </button>
             </form>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-accent/10 pt-6 sm:pt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-            <div className="text-foreground/60 text-xs">
+        <div className="border-t border-border pt-8 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="text-foreground/60 text-sm font-medium">
               <p>&copy; 2025 Prototype Platform. All rights reserved.</p>
             </div>
-            <div className="flex flex-wrap gap-4 sm:gap-6 text-xs justify-center sm:justify-end">
+            <div className="flex flex-wrap gap-6 text-sm justify-center sm:justify-end">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
-                <a key={item} href="#" className="text-foreground/60 hover:text-accent transition-colors duration-500">
+                <a key={item} href="#" className="text-foreground/60 hover:text-primary transition-colors duration-300 font-medium relative group">
                   {item}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                 </a>
               ))}
             </div>
@@ -142,6 +197,4 @@ const Footer = memo(function Footer() {
       </div>
     </footer>
   )
-})
-
-export default Footer
+}
