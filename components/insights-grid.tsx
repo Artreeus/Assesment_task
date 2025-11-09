@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { TrendingUp, Zap, Globe, Users, Leaf, Shield, Lightbulb, Rocket } from "lucide-react"
+import { TrendingUp, Zap, Globe, Users, Leaf, Shield, Lightbulb, Rocket, Database } from "lucide-react"
 
 export default function InsightsGrid() {
   const [isVisible, setIsVisible] = useState(false)
@@ -71,14 +71,20 @@ export default function InsightsGrid() {
       icon: Rocket,
       color: "from-primary via-secondary to-accent",
       description: "Scaling for exponential growth",
+    },
+    {
+      title: "Data-Driven Decisions",
+      category: "Analytics",
+      icon: Database,
+      color: "from-primary via-accent to-secondary",
+      description: "Leveraging big data for insights",
     }
-    
   ]
 
   return (
     <section
       id="insights"
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-primary/5 to-background dark:from-background dark:to-background"
+      className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-primary/5 to-background dark:from-background dark:to-background"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 sm:mb-16">
@@ -87,7 +93,7 @@ export default function InsightsGrid() {
             <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
               Trending Topics <span className="text-primary">Across Industries</span>
             </h2>
-            <p className="text-xl text-foreground/60 mt-6 max-w-2xl">
+            <p className="text-lg sm:text-xl text-foreground/60 mt-6 max-w-2xl">
               Stay informed with our curated content on the most important topics shaping the future
             </p>
           </div>
@@ -96,7 +102,7 @@ export default function InsightsGrid() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {insights.map((insight, idx) => {
             const Icon = insight.icon
-            const isFeatured = idx === 0 || idx === 4
+            const isFeatured = idx === 0 || idx === 4 || idx === insights.length - 1
 
             return (
               <div
@@ -123,8 +129,8 @@ export default function InsightsGrid() {
                 >
                   {insight.title}
                 </h3>
-                {isFeatured && <p className="text-foreground/70 mb-4 text-sm leading-relaxed">{insight.description}</p>}
-                <span className="inline-block px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary text-xs font-semibold rounded-full mb-4 group-hover:bg-primary/20 transition-colors duration-700">
+                <p className="text-foreground/70 dark:text-foreground/60 mb-4 text-sm leading-relaxed">{insight.description}</p>
+                <span className="inline-block px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary text-xs font-semibold rounded-full group-hover:bg-primary/20 transition-colors duration-700">
                   {insight.category}
                 </span>
 

@@ -60,7 +60,7 @@ const StatsBanner = memo(function StatsBanner() {
       number: `${counts[1]}`, 
       label: "Countries Covered",
       icon: Globe,
-      color: "text-secondary"
+      color: "text-accent"
     },
     { 
       number: `${counts[2]}+`, 
@@ -79,23 +79,23 @@ const StatsBanner = memo(function StatsBanner() {
   return (
     <section
       id="stats"
-      className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 border-y border-primary/10 overflow-hidden"
+      className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-primary/5 to-background dark:from-background dark:via-primary/10 dark:to-background border-y border-border overflow-hidden"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+      {/* Subtle background accent */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
         {/* Section header */}
-        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest text-primary mb-4">
-            Our Impact
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground">
-            Trusted by <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Thousands</span>
+        <div className={`mb-12 sm:mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <span className="text-primary font-bold uppercase tracking-widest text-sm">Our Impact</span>
+          <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
+            Trusted by <span className="text-primary">Thousands</span> Worldwide
           </h2>
+          <p className="text-lg sm:text-xl text-foreground/60 mt-6 max-w-2xl">
+            Delivering excellence and impact across the globe
+          </p>
         </div>
 
         {/* Stats grid */}
@@ -105,28 +105,28 @@ const StatsBanner = memo(function StatsBanner() {
             return (
               <div
                 key={idx}
-                className={`group relative bg-card/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 sm:p-8 hover:border-primary/40 transition-all duration-700 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+                className={`group relative bg-card dark:bg-card border border-border dark:border-border rounded-xl p-6 sm:p-8 hover:border-primary/40 dark:hover:border-primary/60 hover:shadow-lg dark:hover:shadow-primary/20 transition-all duration-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
+                {/* Top accent line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${stat.color.replace('text-', 'bg-')} rounded-t-xl opacity-90 dark:opacity-100`}></div>
+
                 {/* Icon */}
-                <div className="flex justify-center mb-4">
-                  <div className={`p-3 rounded-xl bg-primary/10 ${stat.color} group-hover:scale-110 transition-transform duration-700`}>
-                    <Icon size={24} className="sm:w-7 sm:h-7" />
+                <div className="flex justify-center mb-5">
+                  <div className={`p-3 rounded-lg ${stat.color === 'text-secondary' ? 'bg-secondary/10 dark:bg-secondary/20' : stat.color === 'text-accent' ? 'bg-accent/10 dark:bg-accent/20' : 'bg-primary/10 dark:bg-primary/20'} ${stat.color} group-hover:scale-110 transition-transform duration-500`}>
+                    <Icon size={28} strokeWidth={2} />
                   </div>
                 </div>
 
                 {/* Number */}
-                <div className={`text-4xl sm:text-5xl lg:text-6xl font-black ${stat.color} mb-3 group-hover:scale-105 transition-transform duration-700 tabular-nums text-center`}>
+                <div className="text-4xl sm:text-5xl font-bold text-foreground dark:text-foreground mb-2 tabular-nums text-center group-hover:text-primary transition-colors duration-500">
                   {stat.number}
                 </div>
 
                 {/* Label */}
-                <p className="text-sm sm:text-base text-foreground/70 font-semibold text-center leading-tight">
+                <p className="text-sm sm:text-base text-muted-foreground dark:text-muted-foreground font-medium text-center">
                   {stat.label}
                 </p>
-
-                {/* Decorative accent */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 rounded-b-2xl"></div>
               </div>
             )
           })}

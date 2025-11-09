@@ -61,7 +61,7 @@ const Initiatives = memo(function Initiatives() {
   return (
     <section
       id="initiatives"
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300"
+      className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 sm:mb-16">

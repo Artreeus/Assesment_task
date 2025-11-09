@@ -67,9 +67,9 @@ export default function CaseStudies() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + cases.length) % cases.length)
 
   return (
-    <section id="case-studies" className="py-16 px-4 sm:px-6 lg:px-8 bg-card dark:bg-background">
+    <section id="case-studies" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card dark:bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <span className="text-primary font-bold uppercase tracking-widest text-sm">Case Studies</span>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black mt-4 text-balance">

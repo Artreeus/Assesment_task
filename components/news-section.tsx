@@ -31,7 +31,7 @@ export default function NewsSection() {
   return (
     <section
       id="news"
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-primary/5 dark:from-background dark:to-background"
+      className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-primary/5 dark:from-background dark:to-background"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 sm:mb-16">

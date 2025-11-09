@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MapPin, Users } from "lucide-react"
+import { MapPin, Users, Calendar, ArrowRight } from "lucide-react"
 
 export default function Spotlight() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,7 +18,7 @@ export default function Spotlight() {
   const spotlights = [
     {
       title: "Global Summit 2025: Reimagining Tomorrow",
-      description: "Annual conference bringing together world leaders, innovators, and changemakers.",
+      description: "Annual conference bringing together world leaders & innovators.",
       image: "/global-conference-summit.jpg",
       date: "SEPT 15-18",
       location: "Location A",
@@ -48,12 +48,28 @@ export default function Spotlight() {
       location: "Location D",
       attendees: "4,000+",
     },
+    {
+      title: "Tech Transformation Summit",
+      description: "Explore cutting-edge technologies reshaping industries.",
+      image: "/innovation-technology-blue.jpg",
+      date: "JAN 12-14",
+      location: "Location E",
+      attendees: "6,000+",
+    },
+    {
+      title: "Future of Work Conference",
+      description: "Redefining workplace culture and productivity.",
+      image: "/enterprise-digital-transformation-office.jpg",
+      date: "FEB 8-10",
+      location: "Location F",
+      attendees: "3,000+",
+    },
   ]
 
   return (
-    <section id="spotlight" className="py-16 px-4 sm:px-6 lg:px-8 bg-card dark:bg-background">
+    <section id="spotlight" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-background dark:bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <span className="text-primary font-bold uppercase tracking-widest text-sm">Featured Events</span>
             <h2 className="text-5xl sm:text-6xl font-black mt-4 text-balance">
@@ -65,46 +81,60 @@ export default function Spotlight() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+        {/* Simple 2-column Grid Layout */}
+        <div className="grid md:grid-cols-2 gap-6">
           {spotlights.map((item, idx) => (
             <div
               key={idx}
-              className={`group cursor-pointer rounded-2xl overflow-hidden bg-card dark:bg-card shadow-md hover:shadow-2xl transition-all duration-700 transform hover:scale-105 border border-primary/10 dark:border-primary/30 ${
-                isVisible ? "animate-slide-in-left" : "opacity-0"
+              className={`group cursor-pointer rounded-2xl overflow-hidden bg-card dark:bg-card border border-border hover:border-primary/40 dark:hover:border-primary/60 shadow-lg hover:shadow-xl transition-all duration-500 ${
+                isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
-              style={{ animationDelay: `${idx * 0.15}s` }}
+              style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              <div className="relative h-48 sm:h-64 overflow-hidden bg-gradient-to-br from-primary/10 dark:from-primary/20 to-secondary/10 dark:to-secondary/20">
-              <img
+              {/* Image Section */}
+              <div className="relative h-56 sm:h-64 overflow-hidden">
+                <img
                   src={item.image || "/placeholder.svg"}
                   alt={`Event: ${item.title} - ${item.description}`}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <div className="absolute top-4 right-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-bold text-sm">
-                  {item.date}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                
+                {/* Date badge */}
+                <div className="absolute top-4 left-4">
+                  <div className="flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg font-bold text-sm">
+                    <Calendar size={16} />
+                    <span>{item.date}</span>
+                  </div>
                 </div>
               </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-700 text-balance">
+              
+              {/* Content Section */}
+              <div className="p-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground dark:text-foreground">
                   {item.title}
                 </h3>
-                <p className="text-foreground/70 dark:text-foreground/60 mb-5 text-sm">{item.description}</p>
+                <p className="text-muted-foreground text-sm sm:text-base mb-6 leading-relaxed">
+                  {item.description}
+                </p>
 
-                <div className="grid grid-cols-2 gap-4 mb-6 py-4 border-t border-b border-primary/10 dark:border-primary/30">
-                  <div className="flex items-center gap-2 text-sm text-foreground/70 dark:text-foreground/60">
-                    <MapPin size={16} className="text-primary" />
-                    <span>{item.location}</span>
+                {/* Event details */}
+                <div className="flex items-center gap-6 mb-6 pb-6 border-b border-border">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <MapPin size={18} className="text-primary" />
+                    <span className="font-medium">{item.location}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-foreground/70 dark:text-foreground/60">
-                    <Users size={16} className="text-primary" />
-                    <span>{item.attendees}</span>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Users size={18} className="text-primary" />
+                    <span className="font-medium">{item.attendees}</span>
                   </div>
                 </div>
 
-                <button className="w-full px-4 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-700">
-                  Register Now
+                {/* CTA Button */}
+                <button className="group/btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-500">
+                  <span>Register Now</span>
+                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform duration-500" />
                 </button>
               </div>
             </div>
