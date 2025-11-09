@@ -22,15 +22,32 @@ export default function Home() {
     <>
       <Header />
       <main id="main-content" className="min-h-screen overflow-hidden">
+        {/* Hero Section Group */}
         <Hero />
         <StatsBanner />
-        <FeaturedShowcase />
-        <InsightsGrid />
-        <CaseStudies />
-        <Spotlight />
-        <NewsSection />
-        <Initiatives />
-        <Newsletter />
+        
+        {/* Content Discovery Section Group */}
+        <div className="bg-gradient-to-b from-background via-muted/20 to-background">
+          <FeaturedShowcase />
+          <InsightsGrid />
+        </div>
+        
+        {/* Success Stories Section Group */}
+        <div className="bg-gradient-to-b from-background to-muted/30">
+          <CaseStudies />
+        </div>
+        
+        {/* Events & Updates Section Group */}
+        <div className="bg-gradient-to-b from-muted/30 via-background to-background">
+          <Spotlight />
+          <NewsSection />
+        </div>
+        
+        {/* Engagement Section Group */}
+        <div className="bg-gradient-to-b from-background to-primary/5">
+          <Initiatives />
+          <Newsletter />
+        </div>
       </main>
       <Footer />
     </>

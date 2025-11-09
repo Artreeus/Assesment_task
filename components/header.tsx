@@ -98,13 +98,7 @@ export default function Header() {
               }`}
               onClick={() => handleNavClick("#hero")}
             >
-              <div className={`transition-all duration-500 ${
-                isScrolled ? "w-7 h-7" : "w-8 h-8"
-              } bg-gradient-to-br from-primary to-accent rounded-md flex items-center justify-center shadow-sm group-hover:shadow-md`}>
-                <span className={`text-white font-bold transition-all duration-500 ${
-                  isScrolled ? "text-xs" : "text-sm"
-                }`}>P</span>
-              </div>
+             
               <span className={`font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent transition-all duration-500 ${
                 isScrolled ? "text-base" : "text-xl"
               }`}>
@@ -145,8 +139,8 @@ export default function Header() {
               <div className={`transition-all duration-500 overflow-hidden ${
                 isScrolled ? "w-0" : "w-px h-6 bg-border"
               }`}></div>
-              <button className={`font-semibold text-primary-foreground bg-primary hover:bg-primary/90 transition-all duration-500 whitespace-nowrap ${
-                isScrolled ? "px-4 py-2 text-sm rounded-full" : "px-4 py-2 text-sm rounded-md"
+              <button className={`font-semibold text-primary-foreground bg-primary  hover:bg-primary/90 transition-all duration-500 whitespace-nowrap ${
+                isScrolled ? "px-4 py-2 text-sm rounded-full" : "px-4 py-2 text-sm rounded-full"
               }`}>
                 Contact
               </button>

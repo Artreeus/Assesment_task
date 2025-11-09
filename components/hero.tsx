@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-20 sm:pt-24 lg:pt-28 flex items-center px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
+      className="relative min-h-screen pt-20 sm:pt-20 lg:pt-20 flex items-center px-4 sm:px-6 lg:px-8 bg-background overflow-hidden"
     >
       {/* Subtle background gradient */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
