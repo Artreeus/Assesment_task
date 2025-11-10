@@ -1,18 +1,24 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
 
 export default function FeaturedShowcase() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    if (!sectionRef.current) return
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true)
       }
     })
-    observer.observe(document.querySelector("#featured") as Element)
+    
+    observer.observe(sectionRef.current)
+    
+    return () => observer.disconnect()
   }, [])
 
   const featured = [
@@ -49,7 +55,7 @@ export default function FeaturedShowcase() {
   ]
 
   return (
-    <section id="featured" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-muted/20 dark:bg-background">
+    <section ref={sectionRef} id="featured" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-muted/20 dark:bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 sm:mb-16">
           <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>

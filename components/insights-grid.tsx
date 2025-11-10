@@ -1,18 +1,24 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { TrendingUp, Zap, Globe, Users, Leaf, Shield, Lightbulb, Rocket, Database } from "lucide-react"
 
 export default function InsightsGrid() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    if (!sectionRef.current) return
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true)
       }
     })
-    observer.observe(document.querySelector("#insights") as Element)
+    
+    observer.observe(sectionRef.current)
+    
+    return () => observer.disconnect()
   }, [])
 
   const insights = [
@@ -83,6 +89,7 @@ export default function InsightsGrid() {
 
   return (
     <section
+      ref={sectionRef}
       id="insights"
       className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-primary/5 to-background dark:from-background dark:to-background"
     >

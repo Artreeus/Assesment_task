@@ -1,16 +1,16 @@
 "use client"
 
-import { useEffect, useState, memo } from "react"
+import { useEffect, useState, memo, useRef } from "react"
 import { Users, Globe, FileText, Eye } from "lucide-react"
 
 const StatsBanner = memo(function StatsBanner() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [shouldCount, setShouldCount] = useState(false)
   const [counts, setCounts] = useState([0, 0, 0, 0])
 
   useEffect(() => {
-    const element = document.querySelector("#stats")
-    if (!element) return
+    if (!sectionRef.current) return
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -19,7 +19,7 @@ const StatsBanner = memo(function StatsBanner() {
       }
     })
     
-    observer.observe(element)
+    observer.observe(sectionRef.current)
     
     return () => observer.disconnect()
   }, [])
@@ -78,6 +78,7 @@ const StatsBanner = memo(function StatsBanner() {
 
   return (
     <section
+      ref={sectionRef}
       id="stats"
       className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-primary/5 to-background dark:from-background dark:via-primary/10 dark:to-background border-y border-border overflow-hidden"
     >
