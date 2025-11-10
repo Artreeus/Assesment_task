@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react"
 import { Mail, Check, Sparkles, TrendingUp, Users } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { toast } from "sonner"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -82,6 +83,9 @@ export default function Newsletter() {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
     setSubscribed(true)
+    toast.success("Successfully subscribed!", { 
+      description: "You'll receive weekly insights and updates." 
+    })
     setTimeout(() => {
       setEmail("")
       setSubscribed(false)

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { Mail, Phone, MapPin, ArrowUpRight, Sparkles, Globe } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { toast } from "sonner"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -97,6 +98,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href="#"
+                    onClick={(e) => { e.preventDefault(); toast.info(`${item} page coming soon!`) }}
                     className="text-foreground/70 text-sm hover:text-primary transition-all duration-300 flex items-center gap-2 group font-medium"
                   >
                     <span className="group-hover:translate-x-1 transition-transform duration-300">{item}</span>
@@ -118,6 +120,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href="#"
+                    onClick={(e) => { e.preventDefault(); toast.info(`${item} page coming soon!`) }}
                     className="text-foreground/70 text-sm hover:text-primary transition-all duration-300 flex items-center gap-2 group font-medium"
                   >
                     <span className="group-hover:translate-x-1 transition-transform duration-300">{item}</span>
@@ -143,6 +146,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href="#"
+                  onClick={(e) => { e.preventDefault(); toast.info(`${social.name} link coming soon!`) }}
                   className="w-10 h-10 bg-primary/10 hover:bg-gradient-to-br hover:from-primary hover:to-accent border border-primary/20 hover:border-transparent rounded-xl flex items-center justify-center text-primary hover:text-white font-bold transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
                   title={social.name}
                 >
@@ -154,7 +158,7 @@ export default function Footer() {
               <Sparkles size={16} className="text-primary" />
               Stay updated with insights
             </p>
-            <form className="flex flex-col gap-3">
+            <form onSubmit={(e) => { e.preventDefault(); toast.success("Subscribed!", { description: "Thanks for subscribing to updates." }) }} className="flex flex-col gap-3">
               <label htmlFor="footer-email" className="sr-only">
                 Email address for updates
               </label>
@@ -186,7 +190,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-wrap gap-6 text-sm justify-center sm:justify-end">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
-                <a key={item} href="#" className="text-foreground/60 hover:text-primary transition-colors duration-300 font-medium relative group">
+                <a key={item} href="#" onClick={(e) => { e.preventDefault(); toast.info(`${item} page coming soon!`) }} className="text-foreground/60 hover:text-primary transition-colors duration-300 font-medium relative group">
                   {item}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                 </a>
